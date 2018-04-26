@@ -1,0 +1,43 @@
+package org.eking.apims.common.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.eking.apims.common.model.ParamBean;
+
+@Mapper
+public interface ParamBeanMapper {
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    int deleteByPrimaryKey(String paramId);
+
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    int insert(ParamBean record);
+
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    int insertSelective(ParamBean record);
+
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    ParamBean selectByPrimaryKey(String paramId);
+
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    int updateByPrimaryKeySelective(ParamBean record);
+
+    /**
+     *
+     * @mbg.generated 2018-04-25
+     */
+    int updateByPrimaryKey(ParamBean record);
+}
