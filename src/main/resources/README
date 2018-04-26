@@ -1,2 +1,0 @@
-1.org.eking.apims.common路径内存放公共资源，org.eking.apims.module路径存放模块（现有project,api.param三大模块）；
-2.ProjectController中已经写了新增及通过id查询的接口demo,测试成功。
