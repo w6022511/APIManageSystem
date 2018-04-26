@@ -4,7 +4,8 @@ import org.eking.apims.common.commonbean.ResponseBeanGen;
 import org.eking.apims.common.model.ProjectBean;
 import org.eking.apims.common.commonbean.ResponseBean;
 import org.eking.apims.module.project.Service.ProjectService;
-import org.eking.apims.module.project.param.ShowVo;
+import org.eking.apims.module.project.param.ProjectQueryVo;
+import org.eking.apims.module.project.param.ProjectShowVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,9 @@ public class ProjectController {
     *
     */
     @PostMapping("/project")
-    public ResponseBean createProject(@RequestBody ProjectBean project){
+    public ResponseBean createProject(@RequestBody ProjectQueryVo projectQueryVo){
 
-        if (projectService.createProject(project)){
+        if (projectService.createProject(projectQueryVo)){
             return ResponseBeanGen.success();
         }
 
@@ -54,7 +55,7 @@ public class ProjectController {
         if (project == null){
             return ResponseBeanGen.error("此项目不存在");
         }
-        ShowVo show = new ShowVo();
+        ProjectShowVo show = new ProjectShowVo();
         BeanUtils.copyProperties(project, show);
         return ResponseBeanGen.success(show);
     }

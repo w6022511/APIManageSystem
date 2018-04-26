@@ -3,8 +3,11 @@ package org.eking.apims.module.project.Service;
 import org.eking.apims.common.mapper.ProjectBeanMapper;
 import org.eking.apims.common.model.ProjectBean;
 import org.eking.apims.common.utils.IDUtil;
+import org.eking.apims.module.project.param.ProjectQueryVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -22,8 +25,11 @@ public class ProjectService {
     @Autowired
     private IDUtil idUtil;
 
-    public boolean createProject(ProjectBean project){
+    @Transactional
+    public boolean createProject(ProjectQueryVo vo){
 
+        ProjectBean project = new ProjectBean();
+        BeanUtils.copyProperties(vo,project);
         //传入uuid
         project.setProjectId(idUtil.genUUID());
 
@@ -38,5 +44,18 @@ public class ProjectService {
     public ProjectBean getProjectById(String id){
 
         return projectBeanMapper.selectByPrimaryKey(id);
+    }
+
+    @Transactional
+    public boolean updateProject(ProjectQueryVo vo){
+
+        ProjectBean project = new ProjectBean();
+        BeanUtils.copyProperties(vo,project);
+
+        project.setuDate(new Date());
+        if (projectBeanMapper.updateByPrimaryKeySelective(project) > 0){
+            return true;
+        }
+        return false;
     }
 }
