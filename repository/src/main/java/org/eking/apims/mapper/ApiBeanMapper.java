@@ -4,7 +4,6 @@ package org.eking.apims.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.eking.apims.model.ApiBean;
 
-@Mapper
 public interface ApiBeanMapper {
     /**
      *

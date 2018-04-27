@@ -1,6 +1,6 @@
 package org.eking.apims.module.project.param;
 
-import org.eking.apims.commonbean.BaseQuery;
+import org.eking.apims.common.commonbean.BaseQuery;
 
 /**
 * 数据传输vo

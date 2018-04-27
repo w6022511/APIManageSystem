@@ -1,6 +1,6 @@
 package org.eking.apims.common.commonbean;
 
-import org.eking.apims.enums.Code;
+import org.eking.apims.common.enums.Code;
 
 /**
 * 

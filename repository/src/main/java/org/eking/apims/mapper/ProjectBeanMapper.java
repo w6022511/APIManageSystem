@@ -7,7 +7,6 @@ import org.eking.apims.model.ProjectBean;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
 public interface ProjectBeanMapper {
     /**
      *

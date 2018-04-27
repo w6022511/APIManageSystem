@@ -1,4 +1,4 @@
-package org.eking.apims.commonbean;
+package org.eking.apims.common.commonbean;
 
 public class BaseQuery {
 

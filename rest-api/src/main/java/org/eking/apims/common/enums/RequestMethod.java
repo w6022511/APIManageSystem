@@ -1,4 +1,4 @@
-package org.eking.apims.enums;
+package org.eking.apims.common.enums;
 
 /**
 *

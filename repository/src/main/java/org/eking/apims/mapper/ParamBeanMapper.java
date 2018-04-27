@@ -3,7 +3,6 @@ package org.eking.apims.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.eking.apims.model.ParamBean;
 
-@Mapper
 public interface ParamBeanMapper {
     /**
      *

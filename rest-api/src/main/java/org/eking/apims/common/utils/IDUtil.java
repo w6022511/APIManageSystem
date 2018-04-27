@@ -1,4 +1,4 @@
-package org.eking.apims.utils;
+package org.eking.apims.common.utils;
 
 import org.springframework.stereotype.Component;
 

@@ -2,11 +2,11 @@ package org.eking.apims.module.project.Service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.eking.apims.common.utils.IDUtil;
 import org.eking.apims.common.utils.PageInfo;
 import org.eking.apims.mapper.ProjectBeanMapper;
 import org.eking.apims.model.ProjectBean;
 import org.eking.apims.module.project.param.ProjectShowVo;
-import org.eking.apims.utils.IDUtil;
 import org.eking.apims.module.project.param.ProjectQueryVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,9 +94,10 @@ public class ProjectService {
 
     //将实体对象封装成showVo
     public List<ProjectShowVo> projectToShowVo(List<ProjectBean> list){
-        ProjectShowVo vo = new ProjectShowVo();
+
         List<ProjectShowVo> voList = new ArrayList<>();
         for (ProjectBean x : list){
+            ProjectShowVo vo = new ProjectShowVo();
             BeanUtils.copyProperties(x, vo);
             voList.add(vo);
         }
