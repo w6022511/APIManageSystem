@@ -1,8 +1,11 @@
-package org.eking.apims.common.mapper;
+package org.eking.apims.mapper;
 
 
 import org.apache.ibatis.annotations.Mapper;
-import org.eking.apims.common.model.ProjectBean;
+import org.eking.apims.model.ProjectBean;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProjectBeanMapper {
@@ -41,4 +44,6 @@ public interface ProjectBeanMapper {
      * @mbg.generated 2018-04-25
      */
     int updateByPrimaryKey(ProjectBean record);
+
+    List<ProjectBean> selectBySelective(Map map);
 }

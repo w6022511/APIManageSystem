@@ -1,11 +1,13 @@
 package org.eking.apims.module.project.param;
 
+import org.eking.apims.commonbean.BaseQuery;
+
 /**
 * 数据传输vo
 * @Author wangyu
 * @Date 2018/4/26
 */
-public class ProjectQueryVo {
+public class ProjectQueryVo extends BaseQuery {
 
     private String projectId;
 

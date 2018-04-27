@@ -1,4 +1,4 @@
-package org.eking.apims.common.model;
+package org.eking.apims.model;
 
 import java.util.Date;
 

@@ -1,8 +1,11 @@
 package org.eking.apims.module.project.Service;
 
-import org.eking.apims.common.mapper.ProjectBeanMapper;
-import org.eking.apims.common.model.ProjectBean;
-import org.eking.apims.common.utils.IDUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import org.eking.apims.common.utils.PageInfo;
+import org.eking.apims.mapper.ProjectBeanMapper;
+import org.eking.apims.model.ProjectBean;
+import org.eking.apims.utils.IDUtil;
 import org.eking.apims.module.project.param.ProjectQueryVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
 *
@@ -58,4 +63,29 @@ public class ProjectService {
         }
         return false;
     }
+
+    /**
+    *
+    *分页查询
+    *@param
+    *@return
+    *
+    */
+    public PageInfo<ProjectBean> getProjects(Map map){
+
+        Integer pageNumber = map.get("pageNumber") == null ? 1 : Integer.parseInt(map.get("pageNumber").toString());
+        Integer pageSize = map.get("pageSize") == null ? PageInfo.pageSize : Integer.parseInt(map.get("pageSize").toString());
+        PageHelper.startPage(pageNumber , pageSize);
+
+        List<ProjectBean> list = projectBeanMapper.selectBySelective(map);
+        Page<ProjectBean> page = (Page<ProjectBean>) list;
+        Integer total = (int) page.getTotal();
+        Integer pages = page.getPages();
+
+        PageInfo<ProjectBean> pageInfo =
+                new PageInfo<>(page, pageSize, pageNumber, total, pages);
+        return pageInfo;
+    }
+
+
 }

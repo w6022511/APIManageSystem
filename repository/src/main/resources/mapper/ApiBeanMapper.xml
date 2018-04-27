@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.eking.apims.common.mapper.ApiBeanMapper">
-  <resultMap id="BaseResultMap" type="org.eking.apims.common.model.ApiBean">
+<mapper namespace="org.eking.apims.mapper.ApiBeanMapper">
+  <resultMap id="BaseResultMap" type="org.eking.apims.model.ApiBean">
     <id column="API_ID" jdbcType="VARCHAR" property="apiId" />
     <result column="API_URI" jdbcType="VARCHAR" property="apiUri" />
     <result column="REQUEST_METHED" jdbcType="INTEGER" property="requestMethed" />
@@ -29,7 +29,7 @@
     delete from t_api_info
     where API_ID = #{apiId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="org.eking.apims.common.model.ApiBean">
+  <insert id="insert" parameterType="org.eking.apims.model.ApiBean">
     insert into t_api_info (API_ID, API_URI, REQUEST_METHED, 
       INTRODUCTION, C_DATE, U_DATE, 
       EXTN1, EXTN2, EXTN3, 
@@ -41,7 +41,7 @@
       #{extn4,jdbcType=VARCHAR}, #{extn5,jdbcType=VARCHAR}, #{parentProjectId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.eking.apims.common.model.ApiBean">
+  <insert id="insertSelective" parameterType="org.eking.apims.model.ApiBean">
     insert into t_api_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="apiId != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.eking.apims.common.model.ApiBean">
+  <update id="updateByPrimaryKeySelective" parameterType="org.eking.apims.model.ApiBean">
     update t_api_info
     <set>
       <if test="apiUri != null">
@@ -159,7 +159,7 @@
     </set>
     where API_ID = #{apiId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.eking.apims.common.model.ApiBean">
+  <update id="updateByPrimaryKey" parameterType="org.eking.apims.model.ApiBean">
     update t_api_info
     set API_URI = #{apiUri,jdbcType=VARCHAR},
       REQUEST_METHED = #{requestMethed,jdbcType=INTEGER},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.eking.apims.common.mapper.ParamBeanMapper">
-  <resultMap id="BaseResultMap" type="org.eking.apims.common.model.ParamBean">
+<mapper namespace="org.eking.apims.mapper.ParamBeanMapper">
+  <resultMap id="BaseResultMap" type="org.eking.apims.model.ParamBean">
     <id column="PARAM_ID" jdbcType="VARCHAR" property="paramId" />
     <result column="PARAM_NAME" jdbcType="VARCHAR" property="paramName" />
     <result column="PARAM_TYPE" jdbcType="INTEGER" property="paramType" />
@@ -29,7 +29,7 @@
     delete from t_param_info
     where PARAM_ID = #{paramId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="org.eking.apims.common.model.ParamBean">
+  <insert id="insert" parameterType="org.eking.apims.model.ParamBean">
     insert into t_param_info (PARAM_ID, PARAM_NAME, PARAM_TYPE, 
       PARAM_INTRO, PARAM_VALUE, C_DATE, 
       U_DATE, EXTN1, EXTN2, 
@@ -41,7 +41,7 @@
       #{extn3,jdbcType=VARCHAR}, #{extn4,jdbcType=VARCHAR}, #{parentApiId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.eking.apims.common.model.ParamBean">
+  <insert id="insertSelective" parameterType="org.eking.apims.model.ParamBean">
     insert into t_param_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="paramId != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.eking.apims.common.model.ParamBean">
+  <update id="updateByPrimaryKeySelective" parameterType="org.eking.apims.model.ParamBean">
     update t_param_info
     <set>
       <if test="paramName != null">
@@ -159,7 +159,7 @@
     </set>
     where PARAM_ID = #{paramId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.eking.apims.common.model.ParamBean">
+  <update id="updateByPrimaryKey" parameterType="org.eking.apims.model.ParamBean">
     update t_param_info
     set PARAM_NAME = #{paramName,jdbcType=VARCHAR},
       PARAM_TYPE = #{paramType,jdbcType=INTEGER},
