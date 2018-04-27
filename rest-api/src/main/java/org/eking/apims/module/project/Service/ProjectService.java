@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import org.eking.apims.common.utils.PageInfo;
 import org.eking.apims.mapper.ProjectBeanMapper;
 import org.eking.apims.model.ProjectBean;
+import org.eking.apims.module.project.param.ProjectShowVo;
 import org.eking.apims.utils.IDUtil;
 import org.eking.apims.module.project.param.ProjectQueryVo;
 import org.springframework.beans.BeanUtils;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -71,20 +73,34 @@ public class ProjectService {
     *@return
     *
     */
-    public PageInfo<ProjectBean> getProjects(Map map){
+    public PageInfo<ProjectShowVo> getProjects(Map map){
 
         Integer pageNumber = map.get("pageNumber") == null ? 1 : Integer.parseInt(map.get("pageNumber").toString());
         Integer pageSize = map.get("pageSize") == null ? PageInfo.pageSize : Integer.parseInt(map.get("pageSize").toString());
-        PageHelper.startPage(pageNumber , pageSize);
 
+        PageHelper.startPage(pageNumber , pageSize);
         List<ProjectBean> list = projectBeanMapper.selectBySelective(map);
+
         Page<ProjectBean> page = (Page<ProjectBean>) list;
         Integer total = (int) page.getTotal();
         Integer pages = page.getPages();
 
-        PageInfo<ProjectBean> pageInfo =
-                new PageInfo<>(page, pageSize, pageNumber, total, pages);
+        List<ProjectShowVo> voList = projectToShowVo(page);
+
+        PageInfo<ProjectShowVo> pageInfo =
+                new PageInfo<>(voList, pageSize, pageNumber, total, pages);
         return pageInfo;
+    }
+
+    //将实体对象封装成showVo
+    public List<ProjectShowVo> projectToShowVo(List<ProjectBean> list){
+        ProjectShowVo vo = new ProjectShowVo();
+        List<ProjectShowVo> voList = new ArrayList<>();
+        for (ProjectBean x : list){
+            BeanUtils.copyProperties(x, vo);
+            voList.add(vo);
+        }
+        return voList;
     }
 
 

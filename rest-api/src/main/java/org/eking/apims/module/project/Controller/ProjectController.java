@@ -74,7 +74,7 @@ public class ProjectController {
     public ResponseBean getProjects(@RequestParam Map<String,Object> map){
 
 
-        PageInfo<ProjectBean> pageInfo = projectService.getProjects(map);
+        PageInfo<ProjectShowVo> pageInfo = projectService.getProjects(map);
 
         return ResponseBeanGen.success(pageInfo);
     }
