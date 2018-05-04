@@ -2,6 +2,7 @@ package org.eking.apims.module.project.Service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.eking.apims.common.exceptions.BussinessRuntimeException;
 import org.eking.apims.common.utils.IDUtil;
 import org.eking.apims.common.utils.PageInfo;
 import org.eking.apims.mapper.ProjectBeanMapper;
@@ -41,16 +42,20 @@ public class ProjectService {
         project.setProjectId(idUtil.genUUID());
 
         project.setcDate(new Date());
-        if (projectBeanMapper.insertSelective(project) > 0){
-            return true;
+        if (projectBeanMapper.insertSelective(project) == 0){
+            throw new BussinessRuntimeException("添加失败，请重试");
         }
 
-        return false;
+        return true;
     }
 
     public ProjectBean getProjectById(String id){
 
-        return projectBeanMapper.selectByPrimaryKey(id);
+        ProjectBean project = projectBeanMapper.selectByPrimaryKey(id);
+        if (project == null){
+            throw new BussinessRuntimeException("项目不存在");
+        }
+        return project;
     }
 
     @Transactional
@@ -60,10 +65,10 @@ public class ProjectService {
         BeanUtils.copyProperties(vo,project);
 
         project.setuDate(new Date());
-        if (projectBeanMapper.updateByPrimaryKeySelective(project) > 0){
-            return true;
+        if (projectBeanMapper.updateByPrimaryKeySelective(project) == 0){
+            throw new BussinessRuntimeException("更新失败，请重试");
         }
-        return false;
+        return true;
     }
 
     /**

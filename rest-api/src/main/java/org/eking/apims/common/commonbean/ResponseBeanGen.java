@@ -21,4 +21,8 @@ public class ResponseBeanGen {
     public static ResponseBean error(String message){
         return new ResponseBean(message,Code.ERROR.getKey());
     }
+
+    public static ResponseBean error(Integer code , String message){
+        return new ResponseBean(message, code);
+    }
 }

@@ -2,6 +2,7 @@ package org.eking.apims.module.project.Controller;
 
 import org.eking.apims.common.commonbean.ResponseBean;
 import org.eking.apims.common.commonbean.ResponseBeanGen;
+import org.eking.apims.common.exceptions.BussinessRuntimeException;
 import org.eking.apims.common.utils.PageInfo;
 import org.eking.apims.model.ProjectBean;
 import org.eking.apims.module.project.Service.ProjectService;
@@ -39,7 +40,7 @@ public class ProjectController {
             return ResponseBeanGen.success();
         }
 
-        return ResponseBeanGen.error("添加失败");
+        return null;
     }
 
     /**
@@ -55,12 +56,9 @@ public class ProjectController {
 
         ProjectBean project = projectService.getProjectById(projectId);
 
-        if (project == null){
-            return ResponseBeanGen.error("此项目不存在");
-        }
-        ProjectShowVo show = new ProjectShowVo();
-        BeanUtils.copyProperties(project, show);
-        return ResponseBeanGen.success(show);
+        ProjectShowVo showVo = new ProjectShowVo();
+        BeanUtils.copyProperties(project, showVo);
+        return ResponseBeanGen.success(showVo);
     }
 
     /**
@@ -90,8 +88,8 @@ public class ProjectController {
     public ResponseBean updateProjectById(@RequestBody ProjectQueryVo vo){
         if(projectService.updateProject(vo)){
             return ResponseBeanGen.success();
-        };
-
-        return ResponseBeanGen.error("修改失败");
+        }
+        return null;
     }
+
 }
