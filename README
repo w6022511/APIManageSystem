@@ -1,0 +1,3 @@
+1.repository持久层模块内存放持久资源；
+2.rest-api模块存放rest接口和业务逻辑；
+3.ProjectController中已经写了新增及通过id查询的接口demo,测试成功。
